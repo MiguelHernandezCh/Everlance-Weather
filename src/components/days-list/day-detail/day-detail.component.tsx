@@ -3,7 +3,7 @@ import "../day-list.styles.less"
 import {getDateName} from "../../../utils/date.utils";
 import {WeatherTypesConfig} from "../../../constants/weather-types";
 import {FallOutlined, RiseOutlined} from "@ant-design/icons/lib";
-import {formatTemp} from "../../../utils/temperature.utils";
+import {removeDecimals} from "../../../utils/temperature.utils";
 
 interface Props {
     minTemp: any,
@@ -26,11 +26,11 @@ const DayDetail: React.FC<Props> = ({date, tempType, minTemp, maxTemp}) => {
             <div className="DayDetail__TempVariance">
                 <span>
                     <FallOutlined/>
-                    {formatTemp(minTemp)}
+                    {removeDecimals(minTemp)}º
                 </span>
                 <span>
                     <RiseOutlined/>
-                    {formatTemp(maxTemp)}
+                    {removeDecimals(maxTemp)}º
                 </span>
             </div>
         </div>

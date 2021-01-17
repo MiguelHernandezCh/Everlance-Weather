@@ -1,7 +1,7 @@
 import React from "react";
 import "./weather-detail.styles.less"
 import {WeatherTypesConfig} from "../../constants/weather-types";
-import {formatTemp} from "../../utils/temperature.utils";
+import {removeDecimals} from "../../utils/temperature.utils";
 import {SizeClassConfig} from "./weather-detail.resources";
 
 interface Props {
@@ -18,7 +18,7 @@ const WeatherDetail: React.FC<Props> = ({temp, tempType, showImage, size}) => {
     return (
         <section className={`WeatherDetail__Container ${sizeClass}`}>
             <div id="Weather-Temp">
-                {formatTemp(temp)}
+                {removeDecimals(temp)}º
             </div>
             {showImage && (
                 <div>

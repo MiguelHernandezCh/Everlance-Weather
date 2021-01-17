@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import "./cities-list.styles.less"
 import {List, Result} from "antd";
 import {LoadingOutlined} from "@ant-design/icons/lib";
 import {Typography} from 'antd';
 import CityDetail from "./city-detail/city-detail.component";
+import DetailModal from "./detail-modal/detail-modal.component";
 
 const {Title} = Typography;
 
@@ -13,7 +14,11 @@ interface Props {
 }
 
 const CitiesList: React.FC<Props> = ({cities, isLoading}) => {
+    const [selectedLocation, setSelectedLocation]: any = useState(null);
 
+    const handleModalClose = () => {
+        setSelectedLocation(null)
+    }
     const renderEmptyState = () => {
         if (cities?.length || isLoading) return null;
         return (
@@ -29,7 +34,7 @@ const CitiesList: React.FC<Props> = ({cities, isLoading}) => {
         if (!cities?.length || isLoading) return null;
 
         const handleItemClick = (item: any) => {
-            console.log(item);
+            setSelectedLocation(item)
         }
 
         return (
@@ -54,12 +59,12 @@ const CitiesList: React.FC<Props> = ({cities, isLoading}) => {
         )
     }
 
-
     return (
         <section className="CitiesList__Container">
             {renderLoading()}
             {renderEmptyState()}
             {renderCitiesList()}
+            <DetailModal onClose={handleModalClose} locationId={selectedLocation?.woeid} locationName={selectedLocation?.title}/>
         </section>
     )
 };
