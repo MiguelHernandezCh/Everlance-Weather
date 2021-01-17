@@ -2,7 +2,7 @@ import axios from "axios";
 
 const service = axios.create({
     baseURL: "https://www.metaweather.com/api",
-    headers: {"Access-Control-Allow-Origin": "*"}
+    headers: {"Access-Control-Allow-Origin": "https://everlance-weather.vercel.app/"}
 })
 
 export const searchByName = (query: string) => {
