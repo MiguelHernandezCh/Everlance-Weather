@@ -4,8 +4,8 @@ const service = axios.create({
     baseURL: "https://www.metaweather.com/api",
     headers: {
         "Access-Control-Allow-Origin": "https://everlance-weather.vercel.app/",
-        "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type"
+        "Access-Control-Allow-Methods": "GET",
+        "Access-Control-Allow-Headers": "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json"
     }
 })
 
