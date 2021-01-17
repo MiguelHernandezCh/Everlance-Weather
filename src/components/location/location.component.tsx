@@ -50,11 +50,9 @@ const Location: React.FC<Props> = () => {
 
         const onSuccess = async (position: any) => {
             const {latitude, longitude} = position.coords;
-            console.log(latitude, longitude)
             setLoading(true)
             try {
                 const {data} = await searchByCoords(latitude, longitude)
-                console.log(data);
                 if (!data.length) {
                     setHasError(true)
                     return;
@@ -64,7 +62,6 @@ const Location: React.FC<Props> = () => {
                 setCurrentLocation(location)
                 setLoading(false)
             } catch (e) {
-                console.log("Error");
                 setLoading(false)
                 setHasError(true)
             }

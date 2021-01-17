@@ -78,11 +78,9 @@ const DetailModal: React.FC<Props> = ({locationId, locationName, onClose}) => {
 
         try {
             const location = await getLocationData(locationId)
-            console.log(location);
             setLocation(location)
             setHasError(false)
         } catch (e) {
-            console.log("Error");
             setHasError(true)
         }
     }, [locationId])
