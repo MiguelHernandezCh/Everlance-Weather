@@ -1,46 +1,63 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Everlance Code Challenge
 
-## Available Scripts
+## Everlance Weather App
+Comments regarding the development.
 
-In the project directory, you can run:
+* **Internationalization**: The app has the ability to change its language flawlessly. The app has English, Spanish and German. I added German by one comment Alex Marlantes said that there were some German people using the Track Expenses feature. So, I added their language to not make them left out.
 
-### `npm start`
+* **Responsive**: The app is fully responsive.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ * **Reusable components**: There are several components that are reusable based on the design in the componentization analysis. Every other component is ready to be shared and be reusable.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+ * **Improved Desing**: The design screens given were taken as an inspiration, the designs and other components and behavior were added to improve the app and the overall UX. Also, I changed the primary color of the designs and used the color of Everlance.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Added Features 
+When we load the Weather app, we request the user localization in order to get the information for the nearest location of the user. 
 
-### `npm run build`
+Everything has proper validation for errors, and the app has the ability to tell the user that someting went wrong.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Problems in Development 
+The only problem I had during the development were the Cross Origin validation in the MetaWeather API. I tried several thins, and they were not successful.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To solve this problem I suggest donwloading the following [Chrome Extension](https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino), and turn it on for the city search to start working. The other API request will fail.
 
-### `npm run eject`
+To see that the whole app is working I added local mocked data directly from the API, we can toggle this feature in the drawer menu. Once we checked the option the app will reload and will show the information as it would come from the API. This functionality was to show the, "Your location" component, city list and modal working with the information.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Development server
+Run `npm run start` for a dev server. Navigate to `http://localhost:3000/`. The app will automatically reload if you change any of the source files.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Online Web App
+If you're not able to run the development server you can access the deployed application [Here](https://everlance-weather.vercel.app/).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## References
+In the footer of the app there's a link to a document where I started with the analysis of the layout and componetization. Every component in the mockup exists in the app.
 
-## Learn More
+[Document](https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/fileexport/Export_D833a47bec7f6cf2a15045de54f790dfa.pdf).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Development practices
+In this project you will find a segregation of components, to avoid mixing logic from different contexts.
+
+Regarding the logic for the application and the problem solutions, there are several techniques implemented, such as: 
+
+* **Object literals**
+* **Destructuring assignment** 
+* **BEM** 
+* **Avoiding magic numbers/strings**
+* **Open/Closed SOLID principle** 
+* **Separation of concerns** 
+*  **Interface segregation principle**
+*  **Many more...**
+
+
+Author: **Miguel Hernandez** 
+
+[LinkedIn](https://www.linkedin.com/in/miguelhernandezch/) - [Portfolio](https://miguelhernandezch.github.io/me)
+
+January 17th, 2021.
+ 
+ _Monterrey, Nuevo León, México._
