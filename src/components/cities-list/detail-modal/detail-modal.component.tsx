@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {Button, Modal} from "antd";
-import {getLocationData} from "../../../services/mock.service";
+import {Button, Modal, Result} from "antd";
 import {Typography} from 'antd';
 import WeatherDetail from "../../weather-detail/weather-detail.component";
 import {WeatherDetailSize} from "../../weather-detail/weather-detail.resources";
 import DayList from "../../days-list/day-list.component";
 import ExtraDetails from "./extra-details/extra-details.component";
 import {LoadingOutlined} from "@ant-design/icons/lib";
+import {getLocationData} from "../../../services/weather.service";
 
 const {Title} = Typography;
 
@@ -18,17 +18,29 @@ interface Props {
 
 const DetailModal: React.FC<Props> = ({locationId, locationName, onClose}) => {
     const [location, setLocation]: any = useState(null);
+    const [hasError, setHasError]: any = useState(false);
 
     const renderLoading = () => {
-        if (locationId && location) return null;
+        if ((locationId && location) || hasError ) return null;
         return (
             <div className="DetailModal__Body">
                 <LoadingOutlined className="DetailModal__Spinner"/>
             </div>
         )
     }
+    const renderError = () => {
+        if (!hasError) return null;
+        return (
+            <Result
+                status="error"
+                title="Can't reach location data"
+                subTitle="Sadly we couldn't get access to the location data, please try again later."
+            />
+        )
+    }
 
     const renderDetails = () => {
+        if(!locationId || !location) return null;
         const todayWeather = location?.consolidated_weather[0]
         const {the_temp, weather_state_abbr, min_temp, max_temp, wind_speed, humidity} = todayWeather;
         return (
@@ -52,14 +64,24 @@ const DetailModal: React.FC<Props> = ({locationId, locationName, onClose}) => {
         onClose()
     }
 
+    const getLocation = async () => {
+        try {
+            const location = await getLocationData(locationId)
+            console.log(location);
+            setLocation(location)
+            setHasError(false)
+        } catch (e) {
+            console.log("Error");
+            setHasError(true)
+        }
+
+    }
+
     useEffect(() => {
         if (!locationId) return;
+        getLocation();
 
-        setTimeout(() => {
-            setLocation(getLocationData())
-        }, 2000)
-
-    }, [locationId])
+    }, [getLocation, locationId])
 
     return (
         <Modal
@@ -73,7 +95,9 @@ const DetailModal: React.FC<Props> = ({locationId, locationName, onClose}) => {
                     Close
                 </Button>
             ]}>
-            {locationId && location ? renderDetails() : renderLoading()}
+            {renderDetails()}
+            {renderLoading()}
+            {renderError()}
         </Modal>
     )
 };

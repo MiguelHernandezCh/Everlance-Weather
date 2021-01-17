@@ -14,26 +14,17 @@ function App() {
     const [isLoading, setLoading] = useState(false);
     const [cities, setCities] = useState([]);
 
-    console.log("CITIES", cities);
-
     const handleSearch = async (query: string) => {
         if (!query) return;
         setLoading(true);
         try {
             const {data} = await searchByName(query);
-            setCities(data.data)
+            setCities(data)
             setLoading(false)
         } catch (e) {
             setCities([])
             setLoading(false)
         }
-
-        // setIsSearching(false)
-
-        // setTimeout(() => {
-        //     setCities(getResultByQuery())
-        //     setLoading(false)
-        // }, 3000)
     }
 
     return (

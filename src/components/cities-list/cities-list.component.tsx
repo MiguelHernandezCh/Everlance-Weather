@@ -50,6 +50,7 @@ const CitiesList: React.FC<Props> = ({cities, isLoading}) => {
             </div>
         )
     }
+
     const renderLoading = () => {
         if (!isLoading) return null;
         return (
@@ -59,12 +60,18 @@ const CitiesList: React.FC<Props> = ({cities, isLoading}) => {
         )
     }
 
+
+    const renderModal = () => {
+        if (!selectedLocation?.woeid) return null;
+        return <DetailModal onClose={handleModalClose} locationId={selectedLocation?.woeid} locationName={selectedLocation?.title}/>
+    }
+
     return (
         <section className="CitiesList__Container">
             {renderLoading()}
             {renderEmptyState()}
             {renderCitiesList()}
-            <DetailModal onClose={handleModalClose} locationId={selectedLocation?.woeid} locationName={selectedLocation?.title}/>
+            {renderModal()}
         </section>
     )
 };
