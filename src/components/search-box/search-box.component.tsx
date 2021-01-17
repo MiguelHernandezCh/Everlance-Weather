@@ -1,16 +1,29 @@
 import React, {useState} from 'react';
 import "./search-box.styles.less"
 import {Typography, Input, Button} from 'antd';
+import {searchByName} from "../../services/weather.service";
 
 const {Title} = Typography;
 const {Search} = Input;
 
-const SearchBox: React.FC = () => {
+interface Props {
+    setResults: any
+}
+
+const SearchBox: React.FC<Props> = ({setResults}) => {
     const [isLoading, setLoading] = useState(false);
-    const handleSearch = (value: string) => {
-        if(!value) return;
-        console.log(value);
+    const handleSearch = async (query: string) => {
+        if (!query) return;
         setLoading(true);
+
+        try {
+            const {data} = await searchByName(query);
+            setResults(data)
+        } catch (e) {
+            setResults(null)
+        }
+
+        setLoading(false)
     }
 
     return (
@@ -21,8 +34,7 @@ const SearchBox: React.FC = () => {
                     className="SearchBox__Input"
                     placeholder="Search by city name"
                     allowClear
-                    loading={isLoading}
-                    enterButton={<Button>Go</Button>}
+                    enterButton={<Button loading={isLoading}>Go</Button>}
                     size="large"
                     onSearch={handleSearch}
                 />
