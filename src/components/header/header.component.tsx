@@ -16,7 +16,7 @@ const Header: React.FC = () => {
         <section className="Header__Container">
             <a className="Header__Logo" href="https://www.everlance.com/" target="_blank" rel="noreferrer">&nbsp;</a>
             <div className="Header__MenuButton">
-                <Button type="primary" icon={<SettingOutlined />} onClick={handleDrawerToggle}/>
+                <Button type="primary" shape="round" icon={<SettingOutlined />} onClick={handleDrawerToggle}/>
             </div>
             <ConfigDrawer isVisible={isDrawerVisible} onClose={handleDrawerToggle}/>
         </section>

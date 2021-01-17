@@ -1,35 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import "./search-box.styles.less"
 import {Typography, Input, Button} from 'antd';
-import { getResultByQuery} from "../../services/mock.service";
 
 const {Title} = Typography;
 const {Search} = Input;
 
 interface Props {
-    setResults: any
+    onSearch: any,
+    isLoading: boolean
 }
 
-const SearchBox: React.FC<Props> = ({setResults}) => {
-    const [isLoading, setLoading] = useState(false);
-    const handleSearch = async (query: string) => {
-        if (!query) return;
-        setLoading(true);
-
-        try {
-            // const {data} = await searchByName(query);
-        } catch (e) {
-            setResults(null)
-        }
-
-        setTimeout(() => {
-            setResults(getResultByQuery())
-            setLoading(false)
-        }, 3000)
-
-
-    }
-
+const SearchBox: React.FC<Props> = ({isLoading, onSearch}) => {
     return (
         <section className="SearchBox__Container">
             <div className="SearchBox__Content">
@@ -40,7 +21,7 @@ const SearchBox: React.FC<Props> = ({setResults}) => {
                     allowClear
                     enterButton={<Button loading={isLoading}>Go</Button>}
                     size="large"
-                    onSearch={handleSearch}
+                    onSearch={onSearch}
                 />
             </div>
         </section>

@@ -4,7 +4,7 @@ import {Card, Col, Row, Skeleton, Typography} from "antd";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 import {ColOrder} from "./location.resources";
 import {getLocationData} from "../../services/mock.service";
-import DayList from "../day-list/day-list.component";
+import DayList from "../days-list/day-list.component";
 import WeatherDetail from "../weather-detail/weather-detail.component";
 
 const {Title} = Typography;
@@ -65,12 +65,9 @@ const Location: React.FC<Props> = () => {
         return geolocation ? geolocation.getCurrentPosition(onSuccess, onError, GeolocationOptions) : onError()
     }
 
-    console.log("currentLocation", currentLocation);
-
     const getLocationName = () => {
         return `${title}, ${parent?.title}`
     }
-
 
     useEffect(() => {
         getLocation()
