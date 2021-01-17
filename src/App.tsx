@@ -7,6 +7,7 @@ import Location from "./components/location/location.component";
 import CitiesList from "./components/cities-list/cities-list.component";
 import {getResultByQuery} from "./services/mock.service";
 import Footer from "./components/footer/footer.component";
+import {searchByName} from "./services/weather.service";
 
 const {Content} = Layout;
 
@@ -19,20 +20,21 @@ function App() {
     const handleSearch = async (query: string) => {
         if (!query) return;
         setLoading(true);
-
-
         try {
-            // const {data} = await searchByName(query);
+            const {data} = await searchByName(query);
+            setCities(data.data)
+            setLoading(false)
         } catch (e) {
             setCities([])
+            setLoading(false)
         }
 
         // setIsSearching(false)
 
-        setTimeout(() => {
-            setCities(getResultByQuery())
-            setLoading(false)
-        }, 3000)
+        // setTimeout(() => {
+        //     setCities(getResultByQuery())
+        //     setLoading(false)
+        // }, 3000)
     }
 
     return (
