@@ -1,0 +1,34 @@
+@import '~antd/dist/antd.less';
+@import '~antd/lib/style/themes/default.less';
+.SearchBox__Container {
+  height: 250px;
+  background: @primary-color;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  .SearchBox__Content {
+    width: 100%;
+  }
+
+  .SearchBox__Input {
+    border-radius: 50px;
+    width: 40%;
+
+    @media (max-width: 768px) {
+      width: 80%;
+    }
+
+    button {
+      background: #595959;
+      color: whitesmoke !important;
+      border: none;
+    }
+  }
+
+  h3 {
+    color: whitesmoke;
+  }
+
+
+}
