@@ -5,7 +5,6 @@ import Header from "./components/header/header.component";
 import SearchBox from "./components/search-box/search-box.component";
 import Location from "./components/location/location.component";
 import CitiesList from "./components/cities-list/cities-list.component";
-import {getResultByQuery} from "./services/mock.service";
 import Footer from "./components/footer/footer.component";
 import {searchByName} from "./services/weather.service";
 
