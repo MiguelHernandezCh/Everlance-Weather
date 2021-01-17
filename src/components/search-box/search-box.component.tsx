@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import "./search-box.styles.less"
 import {Typography, Input, Button} from 'antd';
-import {searchByName} from "../../services/weather.service";
 import { getResultByQuery} from "../../services/mock.service";
 
 const {Title} = Typography;

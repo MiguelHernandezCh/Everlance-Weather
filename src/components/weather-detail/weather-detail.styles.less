@@ -1,0 +1,46 @@
+@import '~antd/dist/antd.less';
+@import '~antd/lib/style/themes/default.less';
+
+.WeatherDetail__Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 8px;
+  background: @primary-color;
+  border-radius: 6px;
+  color: whitesmoke;
+}
+
+.WeatherDetail__Container--default {
+  width: 140px;
+
+  #Weather-Temp {
+    font-size: 4em;
+  }
+
+  #Weather-Image {
+    width: 40px;
+  }
+
+  #Weather-Name {
+    font-size: 15px;
+  }
+}
+
+.WeatherDetail__Container--large {
+  width: 200px;
+
+  #Weather-Temp {
+    font-size: 5em;
+  }
+
+  #Weather-Image {
+    width: 60px;
+  }
+
+  #Weather-Name {
+    padding-top: 16px;
+    font-size: 18px;
+  }
+}
