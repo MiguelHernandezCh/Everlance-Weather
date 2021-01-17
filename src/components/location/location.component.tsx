@@ -7,6 +7,8 @@ import DayList from "../days-list/day-list.component";
 import WeatherDetail from "../weather-detail/weather-detail.component";
 import {getLocationData, searchByCoords} from "../../services/weather.service";
 import {useTranslation} from "react-i18next";
+import {getConfigOption} from "../../utils/config.utils";
+import {getMockLocationData} from "../../services/mock.service";
 
 const {Title} = Typography;
 
@@ -39,6 +41,13 @@ const Location: React.FC<Props> = () => {
     };
 
     const getLocation = () => {
+        const shouldUseLocalData = getConfigOption();
+        if (shouldUseLocalData) {
+            setCurrentLocation(getMockLocationData())
+            setLoading(false)
+            return;
+        }
+
         const onSuccess = async (position: any) => {
             const {latitude, longitude} = position.coords;
             console.log(latitude, longitude)
@@ -62,7 +71,6 @@ const Location: React.FC<Props> = () => {
         }
 
         const onError = () => {
-            console.log("ERROR")
             setLoading(false)
             setHasError(true)
         }

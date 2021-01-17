@@ -1,7 +1,8 @@
 {
   "config-drawer": {
     "title": "Settings",
-    "language-title": "Languages"
+    "language-title": "Languages",
+    "switch-label": "Use local data"
   },
   "search-box": {
     "title": "How is the weather?",

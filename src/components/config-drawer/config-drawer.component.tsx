@@ -1,10 +1,11 @@
-import React from 'react';
-import {Avatar, Divider, Drawer, List} from "antd";
+import React, {useState} from 'react';
+import {Avatar, Divider, Drawer, List, Switch} from "antd";
 import {getLanguageItems} from "./config-drawer.resources";
 import "./config-drawer.styles.less"
 import {CheckOutlined} from '@ant-design/icons';
 import {useTranslation} from "react-i18next";
 import {changeLanguage} from "../../i18n";
+import {getConfigOption, setConfigOption} from "../../utils/config.utils";
 
 interface Props {
     isVisible: boolean;
@@ -13,6 +14,15 @@ interface Props {
 
 const ConfigDrawer: React.FC<Props> = ({isVisible, onClose}) => {
     const {t} = useTranslation();
+    const [isChecked, setIsChecked] = useState(getConfigOption())
+
+    const handleSwitchChange = (newValue: boolean) => {
+        setConfigOption(newValue)
+        setIsChecked(newValue)
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000)
+    }
 
     return (
         <Drawer
@@ -41,6 +51,11 @@ const ConfigDrawer: React.FC<Props> = ({isVisible, onClose}) => {
 
                     )}
                 />
+
+
+                <div className="Switch__Container">
+                    {t("config-drawer.switch-label")} <Switch onChange={handleSwitchChange} checked={isChecked}/>
+                </div>
             </section>
         </Drawer>
     );

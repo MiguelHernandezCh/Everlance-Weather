@@ -8,6 +8,8 @@ import ExtraDetails from "./extra-details/extra-details.component";
 import {LoadingOutlined} from "@ant-design/icons/lib";
 import {getLocationData} from "../../../services/weather.service";
 import {useTranslation} from "react-i18next";
+import {getConfigOption} from "../../../utils/config.utils";
+import {getMockLocationData} from "../../../services/mock.service";
 
 const {Title} = Typography;
 
@@ -67,6 +69,13 @@ const DetailModal: React.FC<Props> = ({locationId, locationName, onClose}) => {
     }
 
     const getLocation = useCallback(async () => {
+        const shouldUseLocalData = getConfigOption();
+        if (shouldUseLocalData) {
+            setLocation(getMockLocationData())
+            setHasError(false)
+            return;
+        }
+
         try {
             const location = await getLocationData(locationId)
             console.log(location);
