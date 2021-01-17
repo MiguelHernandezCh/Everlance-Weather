@@ -1,5 +1,32 @@
 {
   "config-drawer": {
+    "title": "Configuracion",
     "language-title": "Lenguajes"
+  },
+  "search-box": {
+    "title": "¿Como está el clima?",
+    "input": "Busca por nombre de ciudad",
+    "button": "Ir"
+  },
+  "location": {
+    "title": "Tu ubicación",
+    "error-title": "No pudimos encontrar tu ubicación",
+    "error-subtitle": "Lamentablemente no pudimos acceder a tu ubicación o hubo algún error."
+  },
+  "cities": {
+    "title": "Ciudades",
+    "error-title": "¡Aún no hay resultados!",
+    "error-subtitle": "Por favor utiliza la caja de busqueda superior",
+    "details": "Detalles",
+    "detail-modal": {
+      "today": "Hoy",
+      "button": "Cerrar",
+      "error-title": "No pudimos alcanzar la información de la ciudad",
+      "error-subtitle": "Lamentablemente no pudimos acceder a la informacion de la ciudad, por favir intenta de nuevo más tarde"
+    }
+  },
+  "footer": {
+    "title": "Prueba de Código de Everlance por",
+    "analysis": "Analisis de Componentes"
   }
 }

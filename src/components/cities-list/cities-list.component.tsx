@@ -5,6 +5,7 @@ import {LoadingOutlined} from "@ant-design/icons/lib";
 import {Typography} from 'antd';
 import CityDetail from "./city-detail/city-detail.component";
 import DetailModal from "./detail-modal/detail-modal.component";
+import {useTranslation} from "react-i18next";
 
 const {Title} = Typography;
 
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const CitiesList: React.FC<Props> = ({cities, isLoading}) => {
+    const {t} = useTranslation();
     const [selectedLocation, setSelectedLocation]: any = useState(null);
 
     const handleModalClose = () => {
@@ -24,8 +26,8 @@ const CitiesList: React.FC<Props> = ({cities, isLoading}) => {
         return (
             <Result
                 status="404"
-                title="No results yet!"
-                subTitle="Please use the search box above"
+                title={t("cities.error-title")}
+                subTitle={t("cities.error-subtitle")}
             />
         )
     }
@@ -40,7 +42,7 @@ const CitiesList: React.FC<Props> = ({cities, isLoading}) => {
         return (
             <div className="CitiesList__Container--height">
                 <div className="CitiesList__Results">
-                    <Title level={3}>Cities</Title>
+                    <Title level={3}>{t("cities.title")}</Title>
                     <List
                         itemLayout="horizontal"
                         dataSource={cities}

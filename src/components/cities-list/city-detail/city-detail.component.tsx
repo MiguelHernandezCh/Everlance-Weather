@@ -2,6 +2,7 @@ import {Button, Col, List, Row} from "antd";
 import React from "react";
 import "../cities-list.styles.less"
 import {EnvironmentOutlined, RightOutlined} from "@ant-design/icons/lib";
+import {useTranslation} from "react-i18next";
 
 interface Props {
     title: string,
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const CityDetail: React.FC<Props> = ({title, onClick}) => {
+    const {t} = useTranslation();
     return (
         <List.Item>
             <Row gutter={{xs: 24, sm: 24, md: 24, lg: 32}}>
@@ -20,7 +22,7 @@ const CityDetail: React.FC<Props> = ({title, onClick}) => {
                 </Col>
                 <Col xs={24} sm={6} md={4} lg={4} className="CityItem__ButtonColumn">
                     <Button type="primary" shape="round" onClick={onClick}>
-                        Details
+                        {t("cities.details")}
                         <RightOutlined/>
                     </Button>
                 </Col>

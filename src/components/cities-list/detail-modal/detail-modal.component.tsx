@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {Button, Modal, Result} from "antd";
 import {Typography} from 'antd';
 import WeatherDetail from "../../weather-detail/weather-detail.component";
@@ -7,6 +7,7 @@ import DayList from "../../days-list/day-list.component";
 import ExtraDetails from "./extra-details/extra-details.component";
 import {LoadingOutlined} from "@ant-design/icons/lib";
 import {getLocationData} from "../../../services/weather.service";
+import {useTranslation} from "react-i18next";
 
 const {Title} = Typography;
 
@@ -17,11 +18,12 @@ interface Props {
 }
 
 const DetailModal: React.FC<Props> = ({locationId, locationName, onClose}) => {
+    const {t} = useTranslation();
     const [location, setLocation]: any = useState(null);
     const [hasError, setHasError]: any = useState(false);
 
     const renderLoading = () => {
-        if ((locationId && location) || hasError ) return null;
+        if ((locationId && location) || hasError) return null;
         return (
             <div className="DetailModal__Body">
                 <LoadingOutlined className="DetailModal__Spinner"/>
@@ -33,19 +35,19 @@ const DetailModal: React.FC<Props> = ({locationId, locationName, onClose}) => {
         return (
             <Result
                 status="error"
-                title="Can't reach location data"
-                subTitle="Sadly we couldn't get access to the location data, please try again later."
+                title={t("cities.detail-modal.error-title")}
+                subTitle={t("cities.detail-modal.error-subtitle")}
             />
         )
     }
 
     const renderDetails = () => {
-        if(!locationId || !location) return null;
+        if (!locationId || !location) return null;
         const todayWeather = location?.consolidated_weather[0]
         const {the_temp, weather_state_abbr, min_temp, max_temp, wind_speed, humidity} = todayWeather;
         return (
             <div className="DetailModal__Body">
-                <Title level={5}>Today</Title>
+                <Title level={5}>{t("cities.detail-modal.today")}</Title>
                 <WeatherDetail
                     showImage
                     temp={the_temp}
@@ -64,7 +66,7 @@ const DetailModal: React.FC<Props> = ({locationId, locationName, onClose}) => {
         onClose()
     }
 
-    const getLocation = async () => {
+    const getLocation = useCallback(async () => {
         try {
             const location = await getLocationData(locationId)
             console.log(location);
@@ -74,8 +76,7 @@ const DetailModal: React.FC<Props> = ({locationId, locationName, onClose}) => {
             console.log("Error");
             setHasError(true)
         }
-
-    }
+    }, [locationId])
 
     useEffect(() => {
         if (!locationId) return;
@@ -92,7 +93,7 @@ const DetailModal: React.FC<Props> = ({locationId, locationName, onClose}) => {
             className="DetailModal__Container"
             footer={[
                 <Button key="back" onClick={handleClose}>
-                    Close
+                    {t("cities.detail-modal.button")}
                 </Button>
             ]}>
             {renderDetails()}

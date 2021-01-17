@@ -6,6 +6,7 @@ import {ColOrder} from "./location.resources";
 import DayList from "../days-list/day-list.component";
 import WeatherDetail from "../weather-detail/weather-detail.component";
 import {getLocationData, searchByCoords} from "../../services/weather.service";
+import {useTranslation} from "react-i18next";
 
 const {Title} = Typography;
 
@@ -20,6 +21,7 @@ const GeolocationOptions = {
 };
 
 const Location: React.FC<Props> = () => {
+    const {t} = useTranslation();
     const [currentLocation, setCurrentLocation]: any = useState({});
     const [isLoading, setLoading]: any = useState(true);
     const [hasError, setHasError]: any = useState(false);
@@ -76,8 +78,8 @@ const Location: React.FC<Props> = () => {
         return (
             <Result
                 status="error"
-                title="Can't reach your location"
-                subTitle="Sadly we couldn't get access to your location o there has been an error."
+                title={t("location.error-title")}
+                subTitle={t("location.error-subtitle")}
             />
         )
     }
@@ -89,7 +91,7 @@ const Location: React.FC<Props> = () => {
 
     return (
         <div className="Location__Container">
-            <Card className="Location__Card" title="Your location">
+            <Card className="Location__Card" title={t("location.title")}>
                 {hasError ? renderError() : (
                     <Skeleton loading={isLoading} active>
                         <Title level={2}>{getLocationName()}</Title>

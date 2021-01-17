@@ -1,5 +1,32 @@
 {
   "config-drawer": {
+    "title": "Einstellungen",
     "language-title": "Sprachen"
+  },
+  "search-box": {
+    "title": "Wie ist das Wetter?",
+    "input": "Suche nach Städtenamen",
+    "button": "Gehen"
+  },
+  "location": {
+    "title": "Ihr Standort",
+    "error-title": "Ich kann Ihren Standort nicht erreichen",
+    "error-subtitle": "Leider konnten wir keinen Zugriff auf Ihren Standort erhalten oder es ist ein Fehler aufgetreten."
+  },
+  "cities": {
+    "title": "Städte",
+    "error-title": "Noch keine Ergebnisse!",
+    "error-subtitle": "Bitte benutzen Sie das Suchfeld oben",
+    "details": "Einzelheiten",
+    "detail-modal": {
+      "today": "Heute",
+      "button": "Schließen",
+      "error-title": "Stadtdaten können nicht erreicht werden",
+      "error-subtitle": "Leider konnten wir nicht auf die Stadtdaten zugreifen. Bitte versuchen Sie es später erneut."
+    }
+  },
+  "footer": {
+    "title": "Everlance Code Challenge von",
+    "analysis": "Komponentenanalyse"
   }
 }
