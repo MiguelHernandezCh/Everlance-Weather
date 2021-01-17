@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import "./search-box.styles.less"
 import {Typography, Input, Button} from 'antd';
 import {searchByName} from "../../services/weather.service";
+import { getResultByQuery} from "../../services/mock.service";
 
 const {Title} = Typography;
 const {Search} = Input;
@@ -17,13 +18,17 @@ const SearchBox: React.FC<Props> = ({setResults}) => {
         setLoading(true);
 
         try {
-            const {data} = await searchByName(query);
-            setResults(data)
+            // const {data} = await searchByName(query);
         } catch (e) {
             setResults(null)
         }
 
-        setLoading(false)
+        setTimeout(() => {
+            setResults(getResultByQuery())
+            setLoading(false)
+        }, 3000)
+
+
     }
 
     return (
